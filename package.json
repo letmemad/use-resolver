@@ -4,6 +4,7 @@
   "description": "React hook to resolve promises",
   "main": "dist/index.js",
   "types": "index.d.ts",
+  "typings": "index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc"
