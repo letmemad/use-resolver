@@ -22,7 +22,7 @@ function useFetcher<Data = any, Error = any>(key: string, promise: Promise<Data>
 
   React.useEffect(() => requester(), []);
 
-  return { ...state, revalidate: requester };
+  return { ...state[key], revalidate: requester };
 }
 
 export default useFetcher;
