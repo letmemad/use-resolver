@@ -5,7 +5,7 @@ import { FetcherOptions } from "./types/FetcherOptions";
 function useFetcher<Data = any, Error = any>(key: string, promise: Promise<Data>, options?: FetcherOptions) {
   const [state, dispatch] = React.useReducer<typeof reducer<Data, Error>>(reducer, {
     [key]: {
-      isLoading: false,
+      isLoading: true,
       data: undefined,
       error: undefined,
     }
