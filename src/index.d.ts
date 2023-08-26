@@ -4,4 +4,5 @@ export default function useFetcher<Data = any, Error = any>(key: string, promise
   isLoading: boolean;
   data: Data | undefined;
   error: Error | undefined;
+  revalidate: () => void;
 }
