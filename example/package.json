@@ -12,7 +12,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@ews/use-fetcher": "*"
+    "@ews/use-fetcher": "https://github.com/SirEliaas/useFetcher"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
