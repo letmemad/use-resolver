@@ -1,0 +1,26 @@
+{
+  "name": "@ews/use-fetcher",
+  "version": "0.1.0",
+  "description": "React hook to resolve promises",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "keywords": [
+    "react-hook",
+    "promise",
+    "react-hook-promise-resolver",
+    "promise-resolver"
+  ],
+  "author": "Elias Wacheski <eliaswacheski1999@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.21",
+    "typescript": "^5.2.2"
+  }
+}
