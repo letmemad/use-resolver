@@ -2,8 +2,8 @@
   "name": "@ews/use-fetcher",
   "version": "0.1.0",
   "description": "React hook to resolve promises",
-  "main": "dist/index.js",
-  "types": "index.d.ts",
+  "main": "src/index.ts",
+  "types": "src/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc"
@@ -27,8 +27,8 @@
     "@types/react": "^18.2.21"
   },
   "files": [
-    "index.d.ts",
-    "index.ts",
+    "src/index.d.ts",
+    "src/index.ts",
     "package.json"
   ]
 }
