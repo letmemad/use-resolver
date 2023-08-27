@@ -45,7 +45,7 @@ function useResolver<Data = any, Error = any>(
   // Side effect to call the resolver when component mount.
   React.useMemo(() => {
     resolver(false);
-  }, [key, promise, options]);
+  }, []);
 
   Caching.set(key, state);
   return ({ ...state, revalidate: revalidate });
