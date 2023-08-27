@@ -9,9 +9,9 @@ function useFetcher<Data = any, Error = any>(key: string, promise: Promise<Data>
 
   const [state, dispatch] = React.useReducer<typeof reducer<Data, Error>>(reducer, {
     [key]: {
-      data: cache.data,
-      error: cache.error,
-      isLoading: cache.isLoading ?? true,
+      data: cache?.data ?? undefined,
+      error: cache?.error ?? undefined,
+      isLoading: cache?.isLoading ?? true,
     }
   });
 
