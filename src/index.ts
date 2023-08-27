@@ -1,35 +1,54 @@
 import React from "react";
 import reducer from "./store/reducer";
-import { FetcherOptions } from "./types/FetcherOptions";
+import { ReturnResolver } from "./types/ReturnResolver";
+import { ResolverOptions } from "./types/ResolverOptions";
 
-const Caching = new Map();
+// Cache system
+const Caching = new Map<string, ReturnType<typeof reducer<any, any>>>();
 
-function useFetcher<Data = any, Error = any>(key: string, promise: Promise<Data>, options?: FetcherOptions) {
+function useResolver<Data = any, Error = any>(
+  key: string, 
+  promise: Promise<Data>, 
+  options?: ResolverOptions
+): ReturnResolver<Data, Error> {
+
+  // Get data from caching system
   const cache = Caching.get(key);
 
+  // Create the reducer
   const [state, dispatch] = React.useReducer<typeof reducer<Data, Error>>(reducer, {
-    data: cache?.data ?? undefined,
-    error: cache?.error ?? undefined,
+    data: cache?.data,
+    error: cache?.error,
     isLoading: cache?.isLoading ?? true,
   });
 
-  function requester() {
-    dispatch({ type: "SET_LOADING", payload: true });
+  // Function to resolve the promise
+  const resolver = React.useCallback((revalidate: boolean) => {
+    if(revalidate) {
+      dispatch({ type: "SET_LOADING", payload: true });
+    }
 
     promise.then((data: Data) => {
       dispatch({ type: "SET_DATA", payload: data });
+      options?.onResolve && options.onResolve();
     }).catch((error: Error) => {
       dispatch({ type: "SET_ERROR", payload: error });
       options?.onError && options.onError();
     });
+  }, [promise, options])
+
+  // Function to revalidate the resolver
+  function revalidate() {
+    resolver(true);
   }
 
-  React.useEffect(() => {
-    requester();
-  }, []);
+  // Side effect to call the resolver when component mount.
+  React.useMemo(() => {
+    resolver(false);
+  }, [key, promise, options]);
 
   Caching.set(key, state);
-  return ({ ...state, revalidate: requester });
+  return ({ ...state, revalidate: revalidate });
 }
 
-export default useFetcher;
+export default useResolver;
