@@ -1,6 +1,6 @@
 {
-  "name": "@ews/use-resolver",
-  "version": "0.1.0",
+  "name": "@sirwacheski/use-resolver",
+  "version": "0.5.0",
   "description": "React hook to resolve promises",
   "main": "src/index.ts",
   "types": "src/index.d.ts",
@@ -14,11 +14,8 @@
     "react-hook-promise-resolver",
     "promise-resolver"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:SirEliaas/useResolver.git"
-  },
-  "author": "Elias Wacheski <eliaswacheski1999@gmail.com>",
+  "repository": "git@github.com:SirEliaas/useResolver.git",
+  "author": "Elias Wacheski <sirwacheski@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
     "react": "^18.2.0"
@@ -29,6 +26,7 @@
   "files": [
     "src/index.d.ts",
     "src/index.ts",
+    "src/FetcherOptions.d.ts",
     "package.json"
   ]
 }
