@@ -2,16 +2,22 @@ import React from "react";
 import reducer from "./store/reducer";
 import { FetcherOptions } from "./types/FetcherOptions";
 
+const Caching = new Map();
+
 function useFetcher<Data = any, Error = any>(key: string, promise: Promise<Data>, options?: FetcherOptions) {
+  const cache = Caching.get(key);
+
   const [state, dispatch] = React.useReducer<typeof reducer<Data, Error>>(reducer, {
     [key]: {
-      isLoading: true,
-      data: undefined,
-      error: undefined,
+      data: cache.data,
+      error: cache.error,
+      isLoading: cache.isLoading ?? true,
     }
   });
 
   function requester() {
+    dispatch({ key, type: "SET_LOADING", payload: true });
+
     promise.then((data: Data) => {
       dispatch({ key, type: "SET_DATA", payload: data });
     }).catch((error: Error) => {
@@ -20,9 +26,12 @@ function useFetcher<Data = any, Error = any>(key: string, promise: Promise<Data>
     });
   }
 
-  React.useEffect(() => requester(), []);
+  React.useEffect(() => {
+    requester();
+  }, []);
 
-  return { ...state[key], revalidate: requester };
+  Caching.set(key, state[key]);
+  return ({ ...state[key], revalidate: requester });
 }
 
 export default useFetcher;
