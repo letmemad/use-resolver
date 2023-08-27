@@ -1,6 +1,6 @@
 {
   "name": "@sirwacheski/use-resolver",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "React hook to resolve promises",
   "main": "src/index.ts",
   "types": "src/index.d.ts",
@@ -26,7 +26,8 @@
   "files": [
     "src/index.d.ts",
     "src/index.ts",
-    "src/FetcherOptions.d.ts",
+    "src/store/reducer.ts",
+    "src/types/FetcherOptions.d.ts",
     "package.json"
   ]
 }
