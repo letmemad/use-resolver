@@ -8,20 +8,18 @@ function useFetcher<Data = any, Error = any>(key: string, promise: Promise<Data>
   const cache = Caching.get(key);
 
   const [state, dispatch] = React.useReducer<typeof reducer<Data, Error>>(reducer, {
-    [key]: {
-      data: cache?.data ?? undefined,
-      error: cache?.error ?? undefined,
-      isLoading: cache?.isLoading ?? true,
-    }
+    data: cache?.data ?? undefined,
+    error: cache?.error ?? undefined,
+    isLoading: cache?.isLoading ?? true,
   });
 
   function requester() {
-    dispatch({ key, type: "SET_LOADING", payload: true });
+    dispatch({ type: "SET_LOADING", payload: true });
 
     promise.then((data: Data) => {
-      dispatch({ key, type: "SET_DATA", payload: data });
+      dispatch({ type: "SET_DATA", payload: data });
     }).catch((error: Error) => {
-      dispatch({ key, type: "SET_ERROR", payload: error });
+      dispatch({ type: "SET_ERROR", payload: error });
       options?.onError && options.onError();
     });
   }
@@ -30,8 +28,8 @@ function useFetcher<Data = any, Error = any>(key: string, promise: Promise<Data>
     requester();
   }, []);
 
-  Caching.set(key, state[key]);
-  return ({ ...state[key], revalidate: requester });
+  Caching.set(key, state);
+  return ({ ...state, revalidate: requester });
 }
 
 export default useFetcher;
