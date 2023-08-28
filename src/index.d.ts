@@ -1,7 +1,7 @@
-import { FetcherOptions } from "./types/FetcherOptions";
-export { FetcherOptions } from "./types/FetcherOptions";
+import { ResolverOptions } from "./types/ResolverOptions";
 
-export default function useFetcher<Data = any, Error = any>(key: string, promise: Promise<any>, options?: FetcherOptions): {
+export { ResolverOptions }
+export default function useFetcher<Data = any, Error = any>(key: string, promise: Promise<any>, options?: ResolverOptions): {
   isLoading: boolean;
   data: Data | undefined;
   error: Error | undefined;
