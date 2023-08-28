@@ -8,7 +8,7 @@ const Caching = new Map<string, ReturnType<typeof reducer<any, any>>>();
 
 function useResolver<Data = any, Error = any>(
   key: string, 
-  promise: Promise<Data>, 
+  promise: () => Promise<Data>, 
   options?: ResolverOptions
 ): ReturnResolver<Data, Error> {
 
@@ -28,7 +28,7 @@ function useResolver<Data = any, Error = any>(
       dispatch({ type: "SET_LOADING", payload: true });
     }
 
-    promise.then((data: Data) => {
+    promise().then((data: Data) => {
       dispatch({ type: "SET_DATA", payload: data });
       options?.onResolve && options.onResolve();
     }).catch((error: Error) => {

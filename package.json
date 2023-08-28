@@ -1,6 +1,6 @@
 {
   "name": "@sirwacheski/use-resolver",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "React hook to resolve promises",
   "main": "src/index.ts",
   "types": "src/index.d.ts",
