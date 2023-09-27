@@ -19,7 +19,7 @@ function useResolver<Data = any, Error = any>(
   const [state, dispatch] = React.useReducer<typeof reducer<Data, Error>>(reducer, {
     data: cache?.data,
     error: cache?.error,
-    isLoading: cache?.isLoading ?? true,
+    isLoading: true,
   });
 
   // Function to resolve the promise
@@ -42,13 +42,19 @@ function useResolver<Data = any, Error = any>(
     resolver(true);
   }
 
+  // Function to change the data
+  function mutate(set: (data: Data | undefined) => Data | undefined) {
+    const payload = set(state.data);
+    dispatch({ type: "SET_DATA", payload });
+  }
+
   // Side effect to call the resolver when component mount.
   React.useMemo(() => {
     resolver(false);
   }, []);
 
   Caching.set(key, state);
-  return ({ ...state, revalidate: revalidate });
+  return ({ ...state, mutate, revalidate: revalidate });
 }
 
 export default useResolver;

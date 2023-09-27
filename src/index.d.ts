@@ -1,13 +1,9 @@
 import { ResolverOptions } from "./types/ResolverOptions";
+import { ReturnResolver } from "./types/ReturnResolver";
 
-export { ResolverOptions }
-export default function useFetcher<Data = any, Error = any>(
+export { ResolverOptions, ReturnResolver }
+export default function useResolver<Data, Error = any>(
   key: string, 
-  promise: () => Promise<any>,
+  promise: () => Promise<Data>,
   options?: Partial<ResolverOptions>
-): {
-  isLoading: boolean;
-  data: Data | undefined;
-  error: Error | undefined;
-  revalidate: () => void;
-}
+): ReturnResolver<Data, Error>;
