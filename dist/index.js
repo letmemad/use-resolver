@@ -2,7 +2,7 @@ import React from "react";
 import reducer from "./store/reducer";
 // Cache system
 const Caching = new Map();
-function useResolver(key, promise, options, dependencies) {
+function useResolver(key, promise, options, deps) {
     // Get data from caching system
     const cache = Caching.get(key);
     // Create the reducer
@@ -23,7 +23,7 @@ function useResolver(key, promise, options, dependencies) {
             dispatch({ type: "SET_DATA", payload: data });
         }).catch((error) => {
             dispatch({ type: "SET_ERROR", payload: error });
-            options?.onError && options.onError();
+            options?.onError && options.onError(error);
         });
     }, [promise, options]);
     // Function to revalidate the resolver
@@ -38,7 +38,7 @@ function useResolver(key, promise, options, dependencies) {
     // Side effect to call the resolver when component mount.
     React.useEffect(() => {
         resolver(false);
-    }, dependencies ?? []);
+    }, deps ?? []);
     Caching.set(key, state);
     return ({ ...state, mutate, revalidate: revalidate });
 }
