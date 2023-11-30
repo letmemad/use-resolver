@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "name": "@letmemad/use-resolver",
   "description": "React hook to resolve promises",
   "main": "dist/index.js",
@@ -14,7 +14,7 @@
     "react-hook-promise-resolver",
     "promise-resolver"
   ],
-  "repository": "git@github.com:SirEliaas/useResolver.git",
+  "repository": "git@github.com:letmemad/useResolver.git",
   "author": "Elias Wacheski <sirwacheski@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
