@@ -1,9 +1,9 @@
 {
-  "name": "@sirwacheski/use-resolver",
-  "version": "0.8.0",
+  "version": "1.0.0",
+  "name": "@letmemad/use-resolver",
   "description": "React hook to resolve promises",
-  "main": "src/index.ts",
-  "types": "src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc"
@@ -21,14 +21,10 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.21"
+    "@types/react": "^18.2.21",
+    "typescript": "^5.3.2"
   },
   "files": [
-    "src/index.d.ts",
-    "src/index.ts",
-    "src/store/reducer.ts",
-    "src/types/ResolverOptions.d.ts",
-    "src/types/ReturnResolver.d.ts",
-    "package.json"
+    "dist"
   ]
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { DependencyList } from "react";
 import reducer from "./store/reducer";
 import { ReturnResolver } from "./types/ReturnResolver";
 import { ResolverOptions } from "./types/ResolverOptions";
@@ -9,7 +9,8 @@ const Caching = new Map<string, ReturnType<typeof reducer<any, any>>>();
 function useResolver<Data = any, Error = any>(
   key: string, 
   promise: () => Promise<Data>, 
-  options?: ResolverOptions
+  options?: ResolverOptions,
+  dependencies?: DependencyList,
 ): ReturnResolver<Data, Error> {
 
   // Get data from caching system
@@ -29,8 +30,11 @@ function useResolver<Data = any, Error = any>(
     }
 
     promise().then((data: Data) => {
+      if(options?.onResolve) {
+        data = options.onResolve(data);
+      } 
+      
       dispatch({ type: "SET_DATA", payload: data });
-      options?.onResolve && options.onResolve();
     }).catch((error: Error) => {
       dispatch({ type: "SET_ERROR", payload: error });
       options?.onError && options.onError();
@@ -49,9 +53,9 @@ function useResolver<Data = any, Error = any>(
   }
 
   // Side effect to call the resolver when component mount.
-  React.useMemo(() => {
+  React.useEffect(() => {
     resolver(false);
-  }, []);
+  }, dependencies ?? []);
 
   Caching.set(key, state);
   return ({ ...state, mutate, revalidate: revalidate });
