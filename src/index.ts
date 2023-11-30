@@ -9,8 +9,8 @@ const Caching = new Map<string, ReturnType<typeof reducer<any, any>>>();
 function useResolver<Data = any, Error = any>(
   key: string, 
   promise: () => Promise<Data>, 
-  options?: ResolverOptions,
-  dependencies?: DependencyList,
+  options?: Partial<ResolverOptions<Data, Error>>,
+  deps?: DependencyList,
 ): ReturnResolver<Data, Error> {
 
   // Get data from caching system
@@ -55,7 +55,7 @@ function useResolver<Data = any, Error = any>(
   // Side effect to call the resolver when component mount.
   React.useEffect(() => {
     resolver(false);
-  }, dependencies ?? []);
+  }, deps ?? []);
 
   Caching.set(key, state);
   return ({ ...state, mutate, revalidate: revalidate });
