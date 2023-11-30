@@ -8,5 +8,5 @@ export interface ResolverOptions<Data = any, Error = any> {
    * @description Callback to be executed when your resolver fail.
    * @returns void;
    */
-  onError?: () => Error | void;
+  onError?: (error: Error | string) => Error | void;
 }

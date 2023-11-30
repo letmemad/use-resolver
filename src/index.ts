@@ -37,7 +37,7 @@ function useResolver<Data = any, Error = any>(
       dispatch({ type: "SET_DATA", payload: data });
     }).catch((error: Error) => {
       dispatch({ type: "SET_ERROR", payload: error });
-      options?.onError && options.onError();
+      options?.onError && options.onError(error);
     });
   }, [promise, options])
 
