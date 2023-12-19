@@ -4,10 +4,14 @@
 
 ## Installation
 
+npm
 ```bash
+npm install @letmemad/use-resolver
+```
 
-npm  install  use-resolver
-
+yarn
+```bash
+yarn add @letmemad/use-resolver
 ```
 
 ## Usage
