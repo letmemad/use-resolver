@@ -406,6 +406,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@letmemad/use-resolver@*":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@letmemad/use-resolver/-/use-resolver-1.3.0.tgz#d176ae6a7bb9172643e697d0f4c659cd862ed986"
+  integrity sha512-w381Oik13/LJ8Ryy4uITkYSIKcJDUkDqBWHzYVWA7Vl2BvkeRXLaWHBOYtEsCs2reMrdods6f29qNZQG1z2QUQ==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -426,11 +431,6 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
-
-"@sirwacheski/use-resolver@*":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@sirwacheski/use-resolver/-/use-resolver-0.7.0.tgz#1a79ebb3fca845552ad96a3a06f3bcd83debcbac"
-  integrity sha512-vnUiTgocM9pZul0O6ic1QypeNLrELMDMEaaix0BZxXQ9aSClAlWQPokQZy5SHsHCrbgCkul9Dar1hv8z4AhBHw==
 
 "@types/json-schema@^7.0.12":
   version "7.0.12"

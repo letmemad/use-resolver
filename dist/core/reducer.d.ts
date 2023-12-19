@@ -1,6 +1,6 @@
 export interface Action {
     payload: any;
-    type: "SET_LOADING" | "SET_DATA" | "SET_ERROR";
+    type: "CHANGE_STATE";
 }
 export interface State<Data = any, Error = any> {
     isLoading: boolean;
