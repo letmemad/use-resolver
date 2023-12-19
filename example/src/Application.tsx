@@ -1,10 +1,10 @@
 import React from "react";
-import useResolver from "@sirwacheski/use-resolver";
+import useResolver, { mutate } from "../../dist/core";
 
 const Application: React.FC = () => {
   const request = useResolver("example", function () {
     return new Promise((resolve) => {
-      setTimeout(resolve, 3000);
+      setTimeout(() => resolve("Hello World!"), 3000);
     });
   });
 
@@ -12,6 +12,9 @@ const Application: React.FC = () => {
 
   return (
     <div>
+      <button onClick={() => mutate("example", () => "Hello!")}>
+        Click me
+      </button>
     </div>
   );
 }
