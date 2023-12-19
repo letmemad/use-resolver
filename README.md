@@ -13,31 +13,29 @@ npm  install  use-resolver
 ## Usage
 
 ```javascript
-
 import React from  'react';
 import useResolver from  'use-resolver';
 
 function  MyComponent() {
-	const { state, mutate, revalidate } =  useResolver('myData', async function () {
-		const response =  await  fetch('https://api.example.com/data');
-		return response.json();
-	});
+  const { state, mutate, revalidate } =  useResolver('myData', async function () {
+	const response =  await  fetch('https://api.example.com/data');
+	return response.json();
+  });
 
-	// Access resolved data and loading state:
-	return (
-		<div>
-			{state.isLoading  ? (
-				<p>Loading...</p>
-			) : (
-			<div>
-				<p>Data: {JSON.stringify(state.data)}</p>
-				<button  onClick={revalidate}>Revalidate</button>
-			</div>
-			)}
-		</div>
-	);
+  // Access resolved data and loading state:
+  return (
+    <div>
+	{state.isLoading  ? (
+	  <p>Loading...</p>
+	) : (
+	  <div>
+	    <p>Data: {JSON.stringify(state.data)}</p>
+	    <button  onClick={revalidate}>Revalidate</button>
+	  </div>
+	)}
+     </div>
+  );
 }
-
 ```
 
 ## Features
